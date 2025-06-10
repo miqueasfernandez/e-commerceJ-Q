@@ -1,0 +1,85 @@
+body {
+    background: #f0f8ff; 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+form.product-form {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    margin: 15px;
+    width: 300px;
+    text-align: center;
+}
+
+.profile-container {
+  max-width: 600px;
+  width: 300px;
+  margin: 50px auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 40px 20px rgba(0, 0, 80, 0.1);
+  padding: 30px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.profile-pic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 20px;
+  border: 3px solid #007acc;
+  display: block;    
+}
+
+.welcome-box {
+  background-color: #ffffff;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 80, 0.1);
+}
+
+.edit-button, .logout-button, .product-button {
+  background-color: #007acc;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+.edit-button:hover, .logout-button:hover, .product-button:hover {
+  background-color: #005fa3;
+}
+
+.main-content {
+  margin-left: 220px;
+  padding: 20px;
+}
+
+.form-logout{
+    display: block;
+    color: white;
+    text-decoration: none;
+    margin: 20px 0;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+}

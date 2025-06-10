@@ -1,0 +1,29 @@
+body {
+  background-color: #f0f8ff;
+  font-family: 'Segoe UI', sans-serif;
+  color: #003366;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0;
+}
+
+h2 {
+  font-size: 28px;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 18px;
+  color: #005a9c;
+}
+
+#timer {
+  font-weight: bold;
+  font-size: 24px;
+  color: #007acc;
+  text-shadow: 0 0 4px rgba(0, 122, 204, 0.3);
+}

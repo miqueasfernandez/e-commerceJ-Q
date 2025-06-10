@@ -1,0 +1,28 @@
+{{> sidebar}}
+
+<div class="main-content">
+
+<div class="profile-container">
+  
+  <div class="welcome-box">
+   <img 
+      class="profile-pic"
+      src="{{user.profilePic}}" 
+      alt="Profile Picture" 
+    />
+    <h2>Welcome!</h2>
+    <h3>User: {{user.username}}</h3>
+    <h3>Role: {{user.role}}</h3>
+    <a href="/api/sessions/editprofile" class="edit-button">Edit Profile</a>
+    
+
+  </div>
+
+  {{!-- <form class="form-logout" action="/api/sessions/logout" method="POST">
+    <button type="submit" class="logout-button">Logout</button>
+    
+  </form> --}}
+  <form action="/api/products" id="product-form" method="GET"><button type="submit" class="product-button">Products</button></form>
+</div>
+
+</div>

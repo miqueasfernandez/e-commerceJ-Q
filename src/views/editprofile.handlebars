@@ -1,0 +1,17 @@
+<div class="profile-container">
+  <h2>Edit Your Profile</h2>
+  <p><strong>Current Profile Picture:</strong></p>
+  <img src="{{user.profilePic}}" alt="Current Profile Picture" width="100" />
+
+  <form action="/api/sessions/editprofile" method="POST" enctype="multipart/form-data">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" placeholder="Enter new username" required>
+
+    <label for="profilePic">Upload New Picture:</label>
+    <input type="file" id="profilePic" name="profilePic" accept="image/*">
+
+    <button type="submit">Save Changes</button>
+  </form>
+
+  <a href="/api/sessions/current">Cancel</a>
+</div>

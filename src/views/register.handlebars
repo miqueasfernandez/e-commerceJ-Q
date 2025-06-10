@@ -1,0 +1,52 @@
+{{!-- register.handlebars --}}
+
+
+
+<h1>User Register</h1>
+
+{{#if errors}}
+  <ul class="error-messages" style="color: red;">
+    {{#each errors}}
+      <li>{{this}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+
+<form action="/api/sessions/register" method="POST">
+    <label for="first_name">First Name:</label>
+    <input type="text" name="first_name" value="{{oldData.first_name}}" required>
+    <br><br>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" name="last_name" value="{{oldData.last_name}}" required>
+    <br><br>
+
+    <label for="username">Username:</label>
+    <input type="text" name="username" value="{{oldData.username}}" required>
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" name="email" value="{{oldData.email}}" required>
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" name="password" required>
+    <br><br>
+
+    <label for="age">Age:</label>
+    <input type="number" name="age" value="{{oldData.age}}" required>
+    <br><br>
+
+    <label for="adminCode">Admin Code (optional):</label>
+    <input type="text" id="adminCode" name="adminCode" value="{{oldData.adminCode}}">
+    <br><br>
+
+    <button type="submit">Register</button>
+    <hr>
+</form>
+
+<form action="/api/sessions/login" method="GET">
+    <h2> do you have an account? </h2>
+    <br><br>
+    <button type="submit"> Login </button>
+</form>

@@ -1,0 +1,59 @@
+<h2>My Cart</h2>
+
+{{#if cart.length}}
+  <ul>
+    {{#each cart}}
+      <li style="border: 1px solid #ccc; padding: 10px; margin: 10px 0;">
+        <img src="{{this.product.thumbnail}}" alt="{{this.product.title}}" width="100" />
+        <h3>{{this.product.title}}</h3>
+        <p>{{this.product.description}}</p>
+        <p>Price: ${{this.product.price}}</p>
+        <p>Qantity: {{this.quantity}}</p>
+      </li>
+    {{/each}}
+  </ul>
+  <button onclick="finalizeOrder()">Finish Order</button>
+  <a href="/api/products"> back to products </a>
+
+  <script>
+    async function finalizeOrder() {
+      const cartId = "{{cartId}}"; 
+      try {
+        const response = await fetch(`/api/carts/${cartId}/purchase`, {
+          method: 'GET',
+           headers: {
+           "Accept": "application/json" // to force JSON
+          }
+        });
+        const contentType = response.headers.get("content-type");
+        
+
+        if (contentType && contentType.includes("application/json")) {
+        const data = await response.json();
+
+        if (response.ok) {
+          alert(`✅ Order created successfully!:
+          • Ticket ID: ${data.ticketId}
+          • User: ${data.purchaser}
+          • Total: $${data.amount}
+          • Date: ${new Date(data.date).toLocaleString()}`); //maybe that should be in a another view but it only for preview test
+          window.location.href = "/api/products"; 
+        } else {
+          alert("Error: " + data.message);
+        } 
+        } else {
+      const text = await response.text(); // show html  
+      console.error("unexpected  response:", text.message);
+      alert("the server sent an unexpected response." + Error);
+    }
+      } catch (err) {
+        alert("Error to generating order: " + err.message);
+      }
+    }
+  </script>
+{{else}}
+  <p>your cart is empty.</p>
+  <a href="/api/products"> back to products </a>
+{{/if}}
+
+

@@ -1,0 +1,17 @@
+<h2>{{message}}</h2>
+<p>you will be redirected in <span id="timer">5</span> seconds...</p>
+
+<script>
+  let seconds = 5;
+  const timer = document.getElementById("timer");
+
+  const interval = setInterval(() => {
+    seconds--;
+    timer.textContent = seconds;
+
+    if (seconds <= 0) {
+      clearInterval(interval);
+      window.location.href = "{{redirect}}"; 
+    }
+  }, 1000);
+</script>

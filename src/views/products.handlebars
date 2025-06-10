@@ -1,0 +1,82 @@
+<h1>Product List</h1>
+{{> sidebar}}
+
+<div class="main-content">
+
+
+
+<div class="product-container">
+    {{#each products}}
+        <div class="product-card">
+            <img src="{{this.thumbnail}}" alt="{{this.title}}" class="product-image">
+            <h2>{{this.title}}</h2>
+            <p class="price">${{this.price}}</p>
+            {{!-- <button class="purchase-btn">Purchase</button> --}}
+            <button onclick="addToCart('{{this._id}}')">Add to Cart</button>
+
+        </div>
+    {{/each}}
+</div>
+
+<div class="pagination">
+    {{#if hasPrevPage}}
+        <a href="/api/products?page={{prevPage}}" class="page-btn">⟵ Previous</a>
+    {{/if}}
+
+    <span class="page-info">Page {{currentPage}} of {{totalPages}}</span>
+
+    {{#if hasNextPage}}
+        <a href="/api/products?page={{nextPage}}" class="page-btn">Next ⟶</a>
+    {{/if}}
+</div>
+
+<a href="/api/carts/{{user.cartId}}" class="checkout-button">Finish Order</a>
+</div>
+<script>
+  const cart = [];
+
+  
+  async function addToCart(id, title, description, price, thumbnail) {
+    const cartId = "{{user.cartId}}"; 
+
+    try {
+      const response = await fetch(`/api/carts/${cartId}/products/${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ quantity: 1 }) 
+      });
+
+      if (response.ok) {
+        alert("Product added to cart successfully!");
+      } else {
+        const data = await response.json();
+        alert("Error to add to cart: " + data.message);
+      }
+    } catch (err) {
+      alert("Technical error to add to cart: " + err.message);
+    }
+}
+
+
+async function checkout() {
+  const cartId = "{{cartId}}";
+
+  try {
+    const response = await fetch(`/api/order/${cartId}`, {
+      method: 'POST',
+    });
+
+    if (response.redirected) {
+      window.location.href = response.url;
+    } else if (response.ok) {
+      alert("Order created successfully!");
+      window.location.href = "/products";
+    } else {
+      const text = await response.text();
+      alert("Error to create order: " + text);
+    }
+  } catch (err) {
+    alert("Technical error: " + err.message);
+  }
+}
+</script>
